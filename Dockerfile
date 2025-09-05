@@ -1,16 +1,16 @@
 FROM php:8.2-apache
 
-# Install ekstensi PHP yang dibutuhkan
-RUN docker-php-ext-install mysqli pdo pdo_mysql zip && \
-    a2enmod rewrite
-
-# Install dependensi sistem yang diperlukan
+# 1. Install dependensi sistem terlebih dahulu
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     libzip-dev \
     unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# 2. Baru install ekstensi PHP yang membutuhkannya
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip && \
+    a2enmod rewrite
 
 # Copy project ke dalam container Apache
 COPY . /var/www/html/
