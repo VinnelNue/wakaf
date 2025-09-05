@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 
-# Install ekstensi yang dibutuhkan
-RUN docker-php-ext-install mysqli pdo pdo_mysql && \
+# Install ekstensi PHP yang dibutuhkan
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip && \
     a2enmod rewrite
 
 # Install dependensi sistem yang diperlukan
@@ -12,19 +12,20 @@ RUN apt-get update && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install ekstensi ZIP (jika diperlukan)
-RUN docker-php-ext-install zip
-
 # Copy project ke dalam container Apache
 COPY . /var/www/html/
 
-# Atur permission yang lebih sederhana
-RUN chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+# Atur kepemilikan dan izin folder
+# www-data adalah user yang menjalankan Apache
+RUN chown -R www-data:www-data /var/www/html
+
+# Atur izin yang lebih aman: 755 untuk direktori dan 644 untuk file
+RUN find /var/www/html -type d -exec chmod 755 {} \;
+RUN find /var/www/html -type f -exec chmod 644 {} \;
 
 # Health check untuk memastikan aplikasi berjalan
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost/ || exit 1
+    CMD curl -f http://localhost/login.php || exit 1
 
 # Expose port 80
 EXPOSE 80

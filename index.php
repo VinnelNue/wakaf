@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
   <?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -14,6 +11,9 @@ error_reporting(E_ALL);
     include 'script.php';
 
   ?>
+<!DOCTYPE html>
+<html>
+<head>
   <style>
   .content-wrapper{
     background: rgba(157, 218, 237, 0.8);
