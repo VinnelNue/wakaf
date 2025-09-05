@@ -1,7 +1,7 @@
 <?php
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
+	$host = "db";
+	$user = "wakafuser";
+	$pass = "wakafpass";
 	$db = "wakaf";
 
 	$base_url = "";
