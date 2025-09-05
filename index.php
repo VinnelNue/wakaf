@@ -9,7 +9,8 @@ error_reporting(E_ALL);
     session_start();
 
     include "session.php";
-    include "lib/conn.php";
+    require_once "lib/conn.php";
+    require_once "lib/config.php";
     include 'script.php';
 
   ?>
