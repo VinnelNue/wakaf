@@ -18,12 +18,9 @@ RUN docker-php-ext-install zip
 # Copy project ke dalam container Apache
 COPY . /var/www/html/
 
-# Atur permission dengan lebih spesifik
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 755 /var/www/html/uploads \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
-    && find /var/www/html -type d -exec chmod 755 {} \;
+# Atur permission yang lebih sederhana
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
 
 # Health check untuk memastikan aplikasi berjalan
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
