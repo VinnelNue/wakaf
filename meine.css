@@ -1,0 +1,198 @@
+/*nav head foot*/
+
+/*untuk pages uang_wakaf*/
+.modal-img-container {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    padding-top: 60px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); 
+}
+.modal-img-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    animation-name: zoom;
+    animation-duration: 0.3s;
+    border-radius: 8px;
+}
+.modal-img-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.modal-img-close:hover,
+.modal-img-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animasi zoom saat gambar muncul */
+@keyframes zoom {
+    from {transform: scale(0.7)} 
+    to {transform: scale(1)}
+}
+/*close untuk pages uang_wakaf*/
+
+
+/*untuk pages ahlih waris*/
+.modal-data-container {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20vh 30vw; /* margin luar modal box */
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-data-content {
+    background: linear-gradient(to bottom right, #ffffff, #f4f6f9); 
+    padding: 20px;
+    border-radius: 10px;
+    animation: zoom 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 100%; /* biar modal tetap di dalam padding container */
+    overflow: hidden; /* penting! supaya yang scroll hanya bagian dalamnya */
+}
+.modal-data-content {
+    box-shadow: 0 0 15px rgba(50, 115, 220, 0.4); /* biru glow */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Scroll hanya konten tabel */
+.modal-body-content {
+    max-height: 65vh;      /* tinggi maksimum isi yang bisa dilihat */
+    overflow-y: auto;      /* scroll vertikal kalau kepanjangan */
+    overflow-x: auto;      /* scroll horizontal jika tabel terlalu lebar */
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+     animation: fadeSlide 0.4s ease;
+}
+
+/* Tombol close */
+.modal-data-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10001;
+}
+
+.modal-data-close:hover {
+    color: #ccc;
+}
+
+
+@keyframes zoomCenter {
+    from {
+        opacity: 0;
+        transform: scale(0.7); /* dari kecil */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1); /* ke ukuran normal */
+    }
+}
+
+/* Tabel info */
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: separate !important;
+    border-spacing: 10px 5px !important; 
+    margin: 10px 0;
+}
+
+.info-table th {
+    background-color: #e3f2fd; /* biru muda */
+    color: #0d47a1;
+}
+
+.info-table td {
+    background-color: #f1f8ff;
+    transition: background-color 0.3s;
+}
+
+.info-table td:hover {
+    background-color: #e0f7fa; /* saat hover */
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-data-container {
+        padding: 10vh 5vw;
+    }
+
+    .modal-body-content {
+        max-height: 60vh;
+    }
+
+    .info-table th,
+    .info-table td {
+        font-size: 14px;
+    }
+}
+.table th,
+.table td {
+  white-space: nowrap;
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #ccc;
+  vertical-align: top;
+  font-size: 14px;
+   word-wrap: break-word;
+}
+
+/* Pastikan tabel DataTables fleksibel */
+
+.table thead th {
+  font-weight: bold;
+  background-color: #f4f4f4;
+  text-align: center;
+  font-size: 14px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+
+.table td {
+  text-align: left !important;
+}
+.table th {
+  text-align: left !important;
+}
+/* close tabel */
+
+/*Chart*/
