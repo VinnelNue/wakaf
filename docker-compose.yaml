@@ -5,12 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: wakaf_app
-    ports:
-      - "8081:80"
+    # container_name tidak diperlukan, Coolify akan menanganinya
+    # ports juga tidak diperlukan, Coolify akan menangani exposure ke internet
     volumes:
       - ./:/var/www/html
-      - ./apache-config.conf:/etc/apache2/sites-available/000-default.conf
+      # Kita nonaktifkan config kustom untuk sementara agar pasti berhasil
+      # - ./apache-config.conf:/etc/apache2/sites-available/000-default.conf
     environment:
       - ENVIRONMENT=development
       - APACHE_DOCUMENT_ROOT=/var/www/html

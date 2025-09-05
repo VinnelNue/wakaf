@@ -5,15 +5,21 @@ class Config {
     private static $config = [];
     
     public static function load() {
-        // Load dari .env atau gunakan default
+        // Langsung baca environment variables.
+        // Jika variabel tidak ada, getenv() akan mengembalikan false.
         self::$config = [
-            'DB_HOST' => getenv('DB_HOST') ?: 'db',
-            'DB_USER' => getenv('DB_USER') ?: 'wakafuser',
-            'DB_PASS' => getenv('DB_PASS') ?: 'wakafpass', 
-            'DB_NAME' => getenv('DB_NAME') ?: 'wakaf',
-            'BASE_URL' => getenv('BASE_URL') ?: '',
-            'ENVIRONMENT' => getenv('ENVIRONMENT') ?: 'production'
+            'DB_HOST' => getenv('DB_HOST'),
+            'DB_USER' => getenv('DB_USER'),
+            'DB_PASS' => getenv('DB_PASS'),
+            'DB_NAME' => getenv('DB_NAME'),
+            'BASE_URL' => getenv('BASE_URL'),
+            'ENVIRONMENT' => getenv('ENVIRONMENT') ?: 'production' // Boleh ada fallback
         ];
+
+        // Periksa apakah variabel penting sudah diatur. Jika tidak, hentikan aplikasi.
+        if (empty(self::$config['DB_HOST']) || empty(self::$config['DB_USER']) || empty(self::$config['DB_NAME'])) {
+            die("FATAL ERROR: Environment variables DB_HOST, DB_USER, dan DB_NAME harus diatur di Coolify!");
+        }
     }
     
     public static function get($key, $default = null) {
