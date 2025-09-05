@@ -1,22 +1,22 @@
 FROM php:8.2-apache
 
-# 1. Install dependensi sistem terlebih dahulu
+# 1. Install dependensi sistem terlebih dahulu, termasuk libssl-dev
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     libzip-dev \
     unzip \
+    libssl-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Baru install ekstensi PHP yang membutuhkannya
-RUN docker-php-ext-install mysqli pdo pdo_mysql zip && \
+# 2. Install ekstensi PHP. 
+RUN docker-php-ext-install -j$(nproc) mysqli pdo pdo_mysql zip && \
     a2enmod rewrite
 
 # Copy project ke dalam container Apache
 COPY . /var/www/html/
 
 # Atur kepemilikan dan izin folder
-# www-data adalah user yang menjalankan Apache
 RUN chown -R www-data:www-data /var/www/html
 
 # Atur izin yang lebih aman: 755 untuk direktori dan 644 untuk file
