@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    # Semua konfigurasi lain seperti ports, environment variables, dan network
+    # akan diatur langsung melalui UI Coolify.
+    # Ini adalah cara paling bersih dan direkomendasikan.```
