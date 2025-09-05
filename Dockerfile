@@ -24,8 +24,8 @@ RUN find /var/www/html -type d -exec chmod 755 {} \;
 RUN find /var/www/html -type f -exec chmod 644 {} \;
 
 # Health check untuk memastikan aplikasi berjalan
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost/login.php || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=5 \
+    CMD php /var/www/html/healthcheck.php || exit 1
 
 # Expose port 80
 EXPOSE 80
